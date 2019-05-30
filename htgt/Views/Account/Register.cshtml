@@ -1,0 +1,59 @@
+﻿@model HTGT.Data.Models.HTGTUsersCreateModel
+@{
+    Layout = null;
+    ViewBag.Title = "Register";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>@ViewBag.Title</title>
+
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+        <link href="~/Content/animate.css" rel="stylesheet">
+        <link href="~/Content/style.css" rel="stylesheet">
+
+    </head>
+    <body class="gray-bg">
+        <div class="middle-box text-center loginscreen animated fadeInDown">
+            <div>
+                <h4>Create a new account.</h4>
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "m-t", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", PlaceHolder = "Email Address" })
+                        @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", PlaceHolder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", PlaceHolder = "Confirm Password" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", PlaceHolder = "First Name" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", PlaceHolder = "Last Name" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+                    <p class="text-muted text-center"><small>Already have an account?</small></p>
+                    <a class="btn btn-sm btn-white btn-block" href="@Url.Action("Login")">Login</a>
+                    <a href="@Url.Action("ForgotPassword")"><small>Forgot password?</small></a>
+                }
+            </div>
+        </div>
+    </body>
+</html>

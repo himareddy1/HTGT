@@ -1,0 +1,48 @@
+﻿@using System.Web.UI.WebControls
+@using htgt.Models
+@model LoginViewModel
+@{
+    Layout = null;
+    ViewBag.Title = "Log in";
+}
+
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>@ViewBag.Title</title>
+
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+        <link href="~/Content/animate.css" rel="stylesheet">
+        <link href="~/Content/style.css" rel="stylesheet">
+
+    </head>
+    <body class="gray-bg">
+        <div class="middle-box text-center loginscreen  animated fadeInDown">
+            <div>
+                <h3>Welcome to HTGT Archana Email Database</h3>
+                <p>Please login...</p>
+                    @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "m-t", role = "form"}))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", PlaceHolder = "Email Address" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", PlaceHolder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary block full-width m-b">Log in</button>
+                        <a href="@Url.Action("ForgotPassword")"><small>Forgot password?</small></a>
+                    }
+            </div>
+        </div>
+    </body>
+</html>

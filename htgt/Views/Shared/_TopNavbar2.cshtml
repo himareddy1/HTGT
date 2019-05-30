@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="row border-bottom white-bg">
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <i class="fa fa-reorder"></i>
+            </button>
+            @Html.ActionLink("The Hindu Temple of Greater Tulsa", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a aria-expanded="false" role="button" href="@Url.Action("Index", "EmailSubscription")"> Email Subscriptions</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                @if (Request.IsAuthenticated)
+                {
+                    <li>
+                        @string.Format("Hello {0}!", User.Identity.GetUserName())
+                    </li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i>Log off</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+</div>
